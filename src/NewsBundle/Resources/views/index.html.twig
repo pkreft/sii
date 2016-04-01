@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-default" ng-controller="NewsListCtrl as ctrl" ng-cloak>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{ 'active' : !importance }"><a ng-click="displayImportant(false)">Najnowsze</a></li>
+                        <li ng-class="{ 'active' : importance }"><a ng-click="displayImportant(true)">Najważniejsze</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div ng-if="!importance">
+            <div class="panel-body animate" ng-repeat="info in news | limitTo:10">
+                <div class="col-md-1">
+                    {[ info.createTime ]}
+                </div>
+                <div class="col-md-11">
+                    <a ng-href="{[ ctrl.details(info) ]}">{[ info.preview ]}</a>
+                </div>
+            </div>
+        </div>
+        <div ng-if="importance">
+            <div class="panel-body animate" ng-repeat="info in news | limitTo:10 | filter:!info.important">
+                <a ng-href="{[ ctrl.details(info) ]}">{[ info.preview ]}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

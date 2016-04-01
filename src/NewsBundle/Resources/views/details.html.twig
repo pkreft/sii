@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ news.preview }}
+{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ news.preview }}</h3>
+        </div>
+        <div class="panel-body">
+            {{ news.content }}
+        </div>
+    </div>
+{% endblock %}

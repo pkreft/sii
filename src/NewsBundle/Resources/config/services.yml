@@ -1,0 +1,13 @@
+services:
+    # repository
+    sii.news.repository.news:
+        class: NewsBundle\Repository\NewsRepository
+        factory: ['@doctrine.orm.entity_manager', 'getRepository']
+        arguments: [NewsBundle:News]
+
+    # form handler
+    sii.news.form.handler.add_news:
+        class: NewsBundle\Form\Handler\AddNewsFormHandler
+        arguments:
+            - "@form.factory"
+            - "@doctrine.orm.entity_manager"
