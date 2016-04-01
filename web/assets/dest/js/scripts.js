@@ -15,7 +15,6 @@ app.controller('NewsListCtrl', [
     function ($scope, $resource, $interval) {
         var NewsApi = $resource(Routing.generate('news_fetch'));
         $scope.news = [];
-        $scope.search;
         $scope.importance = false;
 
         NewsApi.get(function (data) {
@@ -44,7 +43,7 @@ app.controller('NewsListCtrl', [
          * @param {Object} news
          */
         this.details = function(news) {
-            return Routing.generate('news_details',{ preview: news.href });
+            return Routing.generate('news_details',{ href: news.href });
         };
 
         /**

@@ -23,7 +23,7 @@ class NewsController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('@News/index.html.twig');
+        return $this->render('NewsBundle::index.html.twig');
     }
 
     /**
@@ -49,14 +49,14 @@ class NewsController extends Controller
     }
 
     /**
-     * @param string $preview
+     * @param string $href
      * @return Response
      *
-     * @Route("/news/{preview}", name="news_details", options={"expose"=true})
+     * @Route("/news/{href}", name="news_details", options={"expose"=true})
      */
-    public function detailsAction($preview)
+    public function detailsAction($href)
     {
-        $news = $this->get('sii.news.repository.news')->findOneBy(array('href' => $preview));
+        $news = $this->get('sii.news.repository.news')->findOneBy(array('href' => $href));
 
         if ( !$news ) {
             $this->get('session')->getFlashBag()->add('warning', 'Żądany zasób nie istnieje');
